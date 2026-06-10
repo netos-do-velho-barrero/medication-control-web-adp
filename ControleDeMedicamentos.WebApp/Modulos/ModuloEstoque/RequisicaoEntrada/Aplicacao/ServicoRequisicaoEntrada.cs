@@ -1,8 +1,8 @@
-using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Aplicacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 
 public class ServicoRequisicaoEntrada
 {
@@ -49,7 +49,6 @@ public class ServicoRequisicaoEntrada
         medicamento.AdicionarQuantidade(dto.Quantidade);
 
         repositorioMedicamento.Editar(medicamento.Id, medicamento);
-
         repositorioRequisicaoEntrada.Cadastrar(requisicaoEntrada);
 
         return ResultadoOperacaoRequisicaoEntrada.Sucesso();
@@ -73,7 +72,6 @@ public class ServicoRequisicaoEntrada
 public class ResultadoOperacaoRequisicaoEntrada
 {
     public bool Conseguiu { get; }
-
     public string? MensagemErro { get; }
 
     private ResultadoOperacaoRequisicaoEntrada(bool conseguiu, string? mensagemErro = null)

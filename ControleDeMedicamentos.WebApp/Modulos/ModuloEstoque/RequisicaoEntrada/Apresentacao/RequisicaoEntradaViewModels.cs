@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 
 public class CadastrarRequisicaoEntradaViewModel
 {
@@ -26,12 +26,8 @@ public class CadastrarRequisicaoEntradaViewModel
 public class ListarRequisicaoEntradaViewModel
 {
     public string Id { get; set; } = string.Empty;
-
     public DateTime Data { get; set; }
-
     public string MedicamentoNome { get; set; } = string.Empty;
-
     public string FuncionarioNome { get; set; } = string.Empty;
-
     public int Quantidade { get; set; }
 }

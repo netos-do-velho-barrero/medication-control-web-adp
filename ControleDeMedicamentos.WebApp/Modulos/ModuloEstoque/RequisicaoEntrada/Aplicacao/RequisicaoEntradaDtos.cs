@@ -1,4 +1,4 @@
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Aplicacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 
 public record CadastrarRequisicaoEntradaDto(
     DateTime Data,

@@ -1,7 +1,7 @@
 using AutoMapper;
-using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 
 public class RequisicaoEntradaProfile : Profile
 {

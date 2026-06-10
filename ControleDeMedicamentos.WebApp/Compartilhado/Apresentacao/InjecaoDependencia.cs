@@ -1,25 +1,15 @@
-using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
-using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloMedicamento.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.Compartilhado.Aplicacao;
 
 public static class InjecaoDependencia
 {
-    public static void AddPresentation(this IServiceCollection services)
+    public static void AddApplicationServices(this IServiceCollection services)
     {
-        services.AddControllersWithViews().AddRazorOptions(options =>
-        {
-            options.ViewLocationFormats.Clear();
-
-            options.ViewLocationFormats.Add("/Modulos/Modulo{1}/Apresentacao/Views/{0}.cshtml");
-
-            options.ViewLocationFormats.Add("/Compartilhado/Apresentacao/Views/{0}.cshtml");
-        });
-
-        services.AddAutoMapper(config =>
-        {
-            config.AddProfile<FornecedorProfile>();
-            config.AddProfile<MedicamentoProfile>();
-        });
+        services.AddScoped<ServicoFornecedor>();
+        services.AddScoped<ServicoMedicamento>();
+        services.AddScoped<ServicoRequisicaoEntrada>();
     }
 }

@@ -1,7 +1,7 @@
 using ControleDeMedicamentos.WebApp.Compartilhado.Infra.Arquivos;
-using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Dominio;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Infra;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Infra;
 
 public class RepositorioRequisicaoEntradaEmArquivo
     : RepositorioBaseEmArquivo<RequisicaoEntrada>, IRepositorioRequisicaoEntrada

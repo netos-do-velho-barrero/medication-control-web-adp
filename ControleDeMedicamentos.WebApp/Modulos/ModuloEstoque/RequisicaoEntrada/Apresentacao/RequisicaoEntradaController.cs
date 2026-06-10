@@ -1,11 +1,11 @@
 using AutoMapper;
-using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 
 public class RequisicaoEntradaController : Controller
 {

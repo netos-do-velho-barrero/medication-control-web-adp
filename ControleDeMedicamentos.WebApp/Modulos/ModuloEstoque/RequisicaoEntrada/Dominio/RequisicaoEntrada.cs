@@ -1,17 +1,15 @@
 using ControleDeMedicamentos.WebApp.Compartilhado.Dominio;
 
-namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicaoEntrada.Dominio;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Dominio;
 
 public class RequisicaoEntrada : EntidadeBase<RequisicaoEntrada>
 {
     public DateTime Data { get; set; }
 
     public string MedicamentoId { get; set; } = string.Empty;
-
     public string MedicamentoNome { get; set; } = string.Empty;
 
     public string FuncionarioId { get; set; } = string.Empty;
-
     public string FuncionarioNome { get; set; } = string.Empty;
 
     public int Quantidade { get; set; }
