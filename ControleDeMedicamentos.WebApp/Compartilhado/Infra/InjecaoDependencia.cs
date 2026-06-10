@@ -1,6 +1,6 @@
 using ControleDeMedicamentos.WebApp.Compartilhado.Infra.Arquivos;
-// using ControleDeMedicamentos.WebApp.ModuloCategoria.Dominio;
-// using ControleDeMedicamentos.WebApp.ModuloCategoria.Infra;
+using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloFornecedor.Infra;
 // using ControleDeMedicamentos.WebApp.ModuloItemLista.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloItemLista.Infra;
 // using ControleDeMedicamentos.WebApp.ModuloListaCompra.Dominio;
@@ -23,7 +23,7 @@ public static class InjecaoDependencia
             return contextoJson;
         });
 
-        // services.AddScoped<IRepositorioCategoria, RepositorioCategoriaEmArquivo>();
+        services.AddScoped<IRepositorioFornecedor, RepositorioFornecedorEmArquivo>();
         // services.AddScoped<IRepositorioProduto, RepositorioProdutoEmArquivo>();
         // services.AddScoped<IRepositorioListaCompra, RepositorioListaCompraEmArquivo>();
         // services.AddScoped<IRepositorioItemLista, RepositorioItemListaEmArquivo>();
