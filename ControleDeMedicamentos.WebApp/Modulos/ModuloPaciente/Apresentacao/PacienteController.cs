@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using FluentResults;
 using AutoMapper;
 using ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao.Extensions;
-using ControleDeMedicamentos.WebApp.ModuloCategoria.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Aplicacao;
 
 namespace ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;

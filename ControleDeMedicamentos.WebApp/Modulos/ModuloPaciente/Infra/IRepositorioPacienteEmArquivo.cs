@@ -1,10 +1,10 @@
 
 using ControleDeMedicamentos.WebApp.Compartilhado.Infra.Arquivos;
-using ControleDeMedicamentos.WebApp.ModuloCategoria.Dominio;
+
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 
 
-namespace ControleDeMedicamentos.WebApp.ModuloCategoria.Infra;
+namespace ControleDeMedicamentos.WebApp.ModuloPaciente.Infra;
 
 public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>, IRepositorioPaciente
 {
