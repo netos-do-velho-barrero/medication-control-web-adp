@@ -1,8 +1,8 @@
-using System;
+using ControleDeMedicamentos.WebApp.Compartilhado.Dominio;
 
 namespace ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
 
-public class IRepositorioFornecedor
+public interface IRepositorioFornecedor : IRepositorio<Fornecedor>
 {
-
+    Fornecedor? SelecionarPorCnpj(string cnpj);
 }
