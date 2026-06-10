@@ -1,5 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+// using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
+ using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
@@ -12,7 +14,7 @@ public sealed class ContextoJson
 {
     public List<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
 
-    // public List<Pacientes> Pacientes { get; set; } = new List<Pacientes>();
+     public List<Paciente> Paciente { get; set; } = new List<Paciente>();
 
     // public List<Medicamentos> Medicamentos { get; set; } = new List<Medicamentos>();
 
@@ -66,6 +68,8 @@ public sealed class ContextoJson
         if (contextoSalvo == null)
             return;
 
+        // Fornecedores = contextoSalvo.Fornecedores;
+         Paciente = contextoSalvo.Paciente;
         Fornecedores = contextoSalvo.Fornecedores;
         // Pacientes = contextoSalvo.Pacientes;
         // Medicamentos = contextoSalvo.Medicamentos;
