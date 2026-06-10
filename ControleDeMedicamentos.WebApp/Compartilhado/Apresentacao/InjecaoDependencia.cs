@@ -1,4 +1,5 @@
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao;
 
@@ -18,6 +19,7 @@ public static class InjecaoDependencia
         services.AddAutoMapper(config =>
         {
             config.AddProfile<FornecedorProfile>();
+            config.AddProfile<MedicamentoProfile>();
         });
     }
 }
