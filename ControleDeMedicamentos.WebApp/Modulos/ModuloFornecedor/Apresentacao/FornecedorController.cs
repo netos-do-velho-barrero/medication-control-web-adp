@@ -1,3 +1,4 @@
+using AutoMapper;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,28 +7,24 @@ namespace ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 public class FornecedorController : Controller
 {
     private readonly ServicoFornecedor servicoFornecedor;
+    private readonly IMapper mapeador;
 
-    public FornecedorController(ServicoFornecedor servicoFornecedor)
+    public FornecedorController(ServicoFornecedor servicoFornecedor, IMapper mapeador)
     {
         this.servicoFornecedor = servicoFornecedor;
+        this.mapeador = mapeador;
     }
 
     public IActionResult Listar()
     {
         ViewBag.Titulo = "Fornecedores";
 
-        List<ListarFornecedorViewModel> fornecedores = servicoFornecedor
-            .SelecionarTodos()
-            .Select(f => new ListarFornecedorViewModel
-            {
-                Id = f.Id,
-                Nome = f.Nome,
-                Telefone = f.Telefone,
-                Cnpj = f.Cnpj
-            })
-            .ToList();
+        List<ListarFornecedorDto> fornecedoresDto = servicoFornecedor.SelecionarTodos();
 
-        return View(fornecedores);
+        List<ListarFornecedorViewModel> fornecedoresVm = mapeador
+            .Map<List<ListarFornecedorViewModel>>(fornecedoresDto);
+
+        return View(fornecedoresVm);
     }
 
     public IActionResult Cadastrar()
@@ -45,11 +42,7 @@ public class FornecedorController : Controller
         if (!ModelState.IsValid)
             return View(viewModel);
 
-        CadastrarFornecedorDto dto = new CadastrarFornecedorDto(
-            viewModel.Nome,
-            viewModel.Telefone,
-            viewModel.Cnpj
-        );
+        CadastrarFornecedorDto dto = mapeador.Map<CadastrarFornecedorDto>(viewModel);
 
         ResultadoOperacao resultado = servicoFornecedor.Cadastrar(dto);
 
@@ -68,18 +61,12 @@ public class FornecedorController : Controller
     {
         ViewBag.Titulo = "Editar Fornecedor";
 
-        EditarFornecedorDto? fornecedor = servicoFornecedor.SelecionarPorId(id);
+        EditarFornecedorDto? fornecedorDto = servicoFornecedor.SelecionarPorId(id);
 
-        if (fornecedor == null)
+        if (fornecedorDto == null)
             return RedirectToAction(nameof(Listar));
 
-        EditarFornecedorViewModel viewModel = new EditarFornecedorViewModel
-        {
-            Id = fornecedor.Id,
-            Nome = fornecedor.Nome,
-            Telefone = fornecedor.Telefone,
-            Cnpj = fornecedor.Cnpj
-        };
+        EditarFornecedorViewModel viewModel = mapeador.Map<EditarFornecedorViewModel>(fornecedorDto);
 
         return View(viewModel);
     }
@@ -92,12 +79,7 @@ public class FornecedorController : Controller
         if (!ModelState.IsValid)
             return View(viewModel);
 
-        EditarFornecedorDto dto = new EditarFornecedorDto(
-            viewModel.Id,
-            viewModel.Nome,
-            viewModel.Telefone,
-            viewModel.Cnpj
-        );
+        EditarFornecedorDto dto = mapeador.Map<EditarFornecedorDto>(viewModel);
 
         ResultadoOperacao resultado = servicoFornecedor.Editar(dto);
 
@@ -116,17 +98,12 @@ public class FornecedorController : Controller
     {
         ViewBag.Titulo = "Excluir Fornecedor";
 
-        ExcluirFornecedorDto? fornecedor = servicoFornecedor.SelecionarParaExclusao(id);
+        ExcluirFornecedorDto? fornecedorDto = servicoFornecedor.SelecionarParaExclusao(id);
 
-        if (fornecedor == null)
+        if (fornecedorDto == null)
             return RedirectToAction(nameof(Listar));
 
-        ExcluirFornecedorViewModel viewModel = new ExcluirFornecedorViewModel
-        {
-            Id = fornecedor.Id,
-            Nome = fornecedor.Nome,
-            Cnpj = fornecedor.Cnpj
-        };
+        ExcluirFornecedorViewModel viewModel = mapeador.Map<ExcluirFornecedorViewModel>(fornecedorDto);
 
         return View(viewModel);
     }

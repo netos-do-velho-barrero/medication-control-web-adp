@@ -1,8 +1,19 @@
-using System;
+using AutoMapper;
+using ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao.Views;
+namespace ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 
-public class FornecedorProfile
+public class FornecedorProfile : Profile
 {
+    public FornecedorProfile()
+    {
+        CreateMap<CadastrarFornecedorViewModel, CadastrarFornecedorDto>();
 
+        CreateMap<EditarFornecedorViewModel, EditarFornecedorDto>();
+        CreateMap<EditarFornecedorDto, EditarFornecedorViewModel>();
+
+        CreateMap<ListarFornecedorDto, ListarFornecedorViewModel>();
+
+        CreateMap<ExcluirFornecedorDto, ExcluirFornecedorViewModel>();
+    }
 }

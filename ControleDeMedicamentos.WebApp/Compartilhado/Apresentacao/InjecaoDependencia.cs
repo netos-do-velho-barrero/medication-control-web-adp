@@ -1,9 +1,4 @@
-// using ControleDeMedicamentos.WebApp.ModuloFornecedores.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloPacientes.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloMedicamentos.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloFuncionários.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloEstoque.Apresentacao;
-
+using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao;
 
@@ -20,15 +15,9 @@ public static class InjecaoDependencia
             options.ViewLocationFormats.Add("/Compartilhado/Apresentacao/Views/{0}.cshtml");
         });
 
-        // services.AddAutoMapper(config =>
-        // {
-        //     config.AddProfile<FornecedoresProfile>();
-        //     config.AddProfile<PacientesProfile>();
-        //     config.AddProfile<MedicamentosProfile>();
-        //     config.AddProfile<FuncionáriosProfile>();
-        //     config.AddProfile<RequisicaoEntradaProfile>();
-        //     config.AddProfile<RequisicaoSaidaProfile>();
-
-        // });
+        services.AddAutoMapper(config =>
+        {
+            config.AddProfile<FornecedorProfile>();
+        });
     }
 }
