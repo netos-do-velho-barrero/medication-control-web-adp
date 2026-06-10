@@ -1,15 +1,9 @@
-using System;
-using Microsoft.AspNetCore.Mvc;
-
 namespace ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
 
- public class FornecedorController : Controller
-    {
-        // GET: FornecedorController
-        public ActionResult Index()
-        {
-            return View();
-        }
+public record CadastrarFornecedorDto(string Nome, string Telefone, string Cnpj);
 
-    }
+public record EditarFornecedorDto(string Id, string Nome, string Telefone, string Cnpj);
 
+public record ListarFornecedorDto(string Id, string Nome, string Telefone, string Cnpj);
+
+public record ExcluirFornecedorDto(string Id, string Nome, string Cnpj);
