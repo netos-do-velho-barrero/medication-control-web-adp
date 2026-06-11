@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao.EditarMedicamentoViewModel
+
 @{
+    ViewBag.Titulo = "Editar Medicamento";
 }
+
+<form asp-controller="Medicamento" asp-action="Editar" method="post">
+    <input asp-for="Id" type="hidden" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Nome" class="form-label"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descricao" class="form-label">Descrição</label>
+        <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="QuantidadeEmEstoque" class="form-label">Quantidade em Estoque</label>
+        <input asp-for="QuantidadeEmEstoque" class="form-control" type="number" min="1" />
+        <span asp-validation-for="QuantidadeEmEstoque" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FornecedorId" class="form-label">Fornecedor</label>
+        <select asp-for="FornecedorId" asp-items="Model.Fornecedores" class="form-select">
+            <option value="">Selecione um fornecedor</option>
+        </select>
+        <span asp-validation-for="FornecedorId" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a class="btn btn-outline-secondary" asp-controller="Medicamento" asp-action="Listar">Voltar</a>
+    </div>
+</form>

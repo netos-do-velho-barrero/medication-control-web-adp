@@ -1,5 +1,63 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao.ListarMedicamentoViewModel>
+
 @{
+    ViewBag.Titulo = "Medicamentos";
+}
+
+<div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-primary" asp-controller="Medicamento" asp-action="Cadastrar">Cadastrar Medicamento</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhum medicamento cadastrado.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Fornecedor</th>
+                <th>Quantidade</th>
+                <th>Situação</th>
+                <th class="text-end">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var medicamento in Model)
+            {
+                <tr class="@(medicamento.EmFalta ? "table-danger" : "")">
+                    <td>@medicamento.Nome</td>
+                    <td>@medicamento.Descricao</td>
+                    <td>@medicamento.FornecedorNome</td>
+                    <td>@medicamento.QuantidadeEmEstoque</td>
+                    <td>
+                        @if (medicamento.EmFalta)
+                        {
+                            <span class="badge text-bg-danger">Em falta</span>
+                        }
+                        else
+                        {
+                            <span class="badge text-bg-success">Disponível</span>
+                        }
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="Medicamento" asp-action="Editar"
+                           asp-route-id="@medicamento.Id">
+                            Editar
+                        </a>
+
+                        <a class="btn btn-outline-danger btn-sm" asp-controller="Medicamento" asp-action="Excluir"
+                           asp-route-id="@medicamento.Id">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
