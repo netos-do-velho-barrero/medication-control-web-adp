@@ -1,13 +1,19 @@
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Aplicacao;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloPaciente.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloFuncionario.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloFuncionario.Aplicacao;
+
+
+
 // using ControleDeMedicamentos.WebApp.ModuloMedicamentos.Apresentacao;
 // using ControleDeMedicamentos.WebApp.ModuloFuncionários.Apresentacao;
 // using ControleDeMedicamentos.WebApp.ModuloEstoque.Apresentacao;
-
 
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Aplicacao;
@@ -18,7 +24,10 @@ public static class InjecaoDependencia
     {
         services.AddScoped<ServicoFornecedor>();
         services.AddScoped<ServicoMedicamento>();
+        services.AddScoped<ServicoPaciente>();
+        services.AddScoped<ServicoFuncionario>();
         services.AddScoped<ServicoRequisicaoEntrada>();
+
         services.AddControllersWithViews().AddRazorOptions(options =>
         {
             options.ViewLocationFormats.Clear();
@@ -33,8 +42,8 @@ public static class InjecaoDependencia
             config.AddProfile<FornecedorProfile>();
             config.AddProfile<MedicamentoProfile>();
             config.AddProfile<PacienteProfile>();
-            //     config.AddProfile<FuncionáriosProfile>();
-            //     config.AddProfile<RequisicaoEntradaProfile>();
+             config.AddProfile<FuncionarioProfile>();
+            config.AddProfile<RequisicaoEntradaProfile>();
             //     config.AddProfile<RequisicaoSaidaProfile>();
 
         });

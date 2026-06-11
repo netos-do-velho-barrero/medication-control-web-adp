@@ -1,13 +1,8 @@
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloFuncionario.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
-using ControleDeMedicamentos.WebApp.ModuloFornecedor.Aplicacao;
-using ControleDeMedicamentos.WebApp.ModuloPaciente.Aplicacao;
-using ControleDeMedicamentos.WebApp.ModuloMedicamento.Aplicacao;
-// using ControleDeMedicamentos.WebApp.ModuloFuncionario.Aplicacao;
-// using ControleDeMedicamentos.WebApp.ModuloEstoque.Aplicacao;
-using ControleDeMedicamentos.WebApp.ModuloFuncionario.Aplicacao;
-//using ControleDeMedicamentos.WebApp.ModuloEstoque.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao;
 
@@ -30,16 +25,12 @@ public static class InjecaoDependencia
         {
             config.AddProfile<FornecedorProfile>();
             config.AddProfile<MedicamentoProfile>();
+            config.AddProfile<PacienteProfile>();
+            config.AddProfile<FuncionarioProfile>();
             config.AddProfile<RequisicaoEntradaProfile>();
         });
     }
 }
-        services.AddScoped<ServicoFornecedor>();
-        services.AddScoped<ServicoPaciente>();
-        services.AddScoped<ServicoFuncionario>();
-        services.AddScoped<ServicoMedicamento>();
-        // services.AddScoped<ServicoRequisicaoEntrada>();
-        // services.AddScoped<ServicoRequisicaoSaida>();
+       
 
-    }
-}
+   

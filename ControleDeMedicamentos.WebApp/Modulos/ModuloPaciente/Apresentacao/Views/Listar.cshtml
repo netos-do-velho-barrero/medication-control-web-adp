@@ -1,121 +1,52 @@
-﻿@using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio
-@using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao
-
-@model List<ListarPacienteViewModel>
+﻿@model List<ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao.ListarPacienteViewModel>
 
 @{
     ViewBag.Titulo = "Pacientes";
 }
 
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
-
-    <div>
-        <h1 class="h3 mb-1">Paciente</h1>
-
-        <p class="text-secondary mb-0">
-            Gerencie os pacientes
-        </p>
-    </div>
-
-    <a class="btn btn-primary" asp-action="Cadastrar">
-        Novo paciente
-    </a>
-
+<div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-primary" asp-controller="Paciente" asp-action="Cadastrar">Cadastrar Paciente</a>
 </div>
 
-<div class="card border-0 shadow-sm">
-
-    <div class="card-body">
-
-        @if (Model.Count == 0)
-        {
-            <div class="text-center py-5">
-
-                <h2 class="h5 mb-2">
-                    Nenhum Paciente cadastrada
-                </h2>
-
-                <p class="text-secondary mb-4">
-                    Cadastre sua primeira Paciente.
-                </p>
-
-                <a class="btn btn-primary" asp-action="Cadastrar">
-                    Cadastrar paciente
-                </a>
-
-            </div>
-        }
-        else
-        {
-            <div class="table-responsive">
-
-                <table class="table table-hover align-middle mb-0">
-
-                    <thead class="table-light">
-                        <tr>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>CartaoSus</th>
-                            <th>Cpf</th>
-                            <th class="text-end">Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @foreach (ListarPacienteViewModel paciente in Model)
-                        {
-                            <tr>
-
-                                <td>
-                                    <div class="fw-semibold">
-                                        @paciente.Nome
-                                    </div>
-
-                                    <small class="text-secondary">
-                                        Código: @paciente.Id
-                                    </small>
-                                </td>
-
-                                <td>
-                                    @paciente.Telefone
-                                </td>
-
-                                <td>
-                                    @paciente.CartaoSus
-                                </td>
-
-                                <td>
-                                    @paciente.Cpf
-                                </td>
-
-
-                                <td class="text-end">
-
-                                    <div class="btn-group btn-group-sm" role="group">
-
-                                        <a class="btn btn-outline-primary" asp-action="Editar" asp-route-id="@paciente.Id">
-                                            Editar
-                                        </a>
-
-                                        <a class="btn btn-outline-danger" asp-action="Excluir" asp-route-id="@paciente.Id">
-                                            Excluir
-                                        </a>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-                        }
-
-                    </tbody>
-
-                </table>
-
-            </div>
-        }
-
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhum paciente cadastrado.
     </div>
+}
+else
+{
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Cartão SUS</th>
+                <th>CPF</th>
+                <th class="text-end">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var paciente in Model)
+            {
+                <tr>
+                    <td>@paciente.Nome</td>
+                    <td>@paciente.Telefone</td>
+                    <td>@paciente.CartaoSus</td>
+                    <td>@paciente.Cpf</td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="Paciente" asp-action="Editar"
+                           asp-route-id="@paciente.Id">
+                            Editar
+                        </a>
 
-</div>
+                        <a class="btn btn-outline-danger btn-sm" asp-controller="Paciente" asp-action="Excluir"
+                           asp-route-id="@paciente.Id">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
