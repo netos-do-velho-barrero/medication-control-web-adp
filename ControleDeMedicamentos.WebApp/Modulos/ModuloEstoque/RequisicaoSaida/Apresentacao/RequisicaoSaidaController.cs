@@ -153,7 +153,7 @@ public class RequisicaoSaidaController : Controller
         return RedirectToAction(nameof(Listar));
     }
 
-    // Método unificado usando dynamic para servir tanto o Cadastrar quanto o Editar de forma inteligente
+   
     private void CarregarSelecoes(dynamic viewModel)
     {
         viewModel.Medicamentos = repositorioMedicamento

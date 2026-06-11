@@ -74,14 +74,13 @@ public class ServicoRequisicaoEntrada
         if (funcionario == null)
             return ResultadoOperacaoRequisicaoEntrada.Falha("Funcionário não encontrado.");
 
-        // Regra de segurança: Desfaz temporariamente a entrada antiga no cálculo
-        // para checar se o estoque atual suporta a remoção dela
+        
         int estoqueTemporario = medicamento.QuantidadeEmEstoque - requisicaoOriginal.Quantidade;
 
         if (estoqueTemporario < 0)
             return ResultadoOperacaoRequisicaoEntrada.Falha("A alteração desta entrada não é permitida pois o estoque atual é menor que o estorno da quantidade anterior.");
 
-        // Atualiza as quantidades reais no domínio (Estorna a antiga e soma a nova quantidade editada)
+   
         medicamento.SubtrairQuantidade(requisicaoOriginal.Quantidade);
         medicamento.AdicionarQuantidade(dto.Quantidade);
 
@@ -116,11 +115,11 @@ public class ServicoRequisicaoEntrada
 
         if (medicamento != null)
         {
-            // Valida se a quantidade atual em estoque permite remover essa entrada anterior
+        
             if (medicamento.QuantidadeEmEstoque - requisicaoEntrada.Quantidade < 0)
                 return ResultadoOperacaoRequisicaoEntrada.Falha("Não é possível excluir esta entrada. A quantidade atual em estoque é menor do que a quantidade que será estornada.");
 
-            // Estorna a quantidade tirando do estoque do medicamento
+       
             medicamento.SubtrairQuantidade(requisicaoEntrada.Quantidade);
             repositorioMedicamento.Editar(medicamento.Id, medicamento);
         }

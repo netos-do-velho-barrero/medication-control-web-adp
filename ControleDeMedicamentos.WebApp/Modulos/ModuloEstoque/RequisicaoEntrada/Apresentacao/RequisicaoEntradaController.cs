@@ -153,7 +153,7 @@ public class RequisicaoEntradaController : Controller
         return RedirectToAction(nameof(Listar));
     }
 
-    // Método unificado usando dynamic adaptado para Medicamentos e Funcionários
+  
     private void CarregarSelecoes(dynamic viewModel)
     {
         viewModel.Medicamentos = repositorioMedicamento

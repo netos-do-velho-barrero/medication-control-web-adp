@@ -34,7 +34,7 @@ public class ListarRequisicaoEntradaViewModel
     public int Quantidade { get; set; }
 }
 
-// --- Nova ViewModel para Editar ---
+
 
 public class EditarRequisicaoEntradaViewModel
 {
