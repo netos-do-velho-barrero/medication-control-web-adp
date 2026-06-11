@@ -1,8 +1,16 @@
-using System;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.Modulos.ModuloEstoque.RequisicaoEntrada.Aplicacao;
+public record CadastrarRequisicaoEntradaDto(
+    DateTime Data,
+    string MedicamentoId,
+    string FuncionarioId,
+    int Quantidade
+);
 
-public class RequisicaoEntradaDtos
-{
-
-}
+public record ListarRequisicaoEntradaDto(
+    string Id,
+    DateTime Data,
+    string MedicamentoNome,
+    string FuncionarioNome,
+    int Quantidade
+);

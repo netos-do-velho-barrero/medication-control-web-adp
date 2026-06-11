@@ -1,8 +1,7 @@
-using System;
+using ControleDeMedicamentos.WebApp.Compartilhado.Dominio;
 
 namespace ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 
-public class IRepositorioFuncionario
+public interface IRepositorioFuncionario : IRepositorio<Funcionario>
 {
-
 }

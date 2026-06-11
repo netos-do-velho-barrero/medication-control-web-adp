@@ -1,6 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
@@ -19,12 +22,9 @@ public sealed class ContextoJson
 
     public List<Medicamento> Medicamentos { get; set; } = new List<Medicamento>();
 
-    // public List<Funcionários> Funcionários { get; set; } = new List<Funcionários>();
+    public List<Funcionario> Funcionarios { get; set; } = new List<Funcionario>();
 
-    // public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
-
-    // public List<RequisicaoSaida> RequisicoesSaida { get; set; } = new List<RequisicaoSaida>();
-
+    public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
 
     private readonly string caminhoArquivo;
 
@@ -32,7 +32,7 @@ public sealed class ContextoJson
     {
         string caminhoAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-        string caminhoDiretorio = Path.Combine(caminhoAppData, "ListaDeComprasWeb");
+        string caminhoDiretorio = Path.Combine(caminhoAppData, "ControleDeMedicamentosWeb");
 
         Directory.CreateDirectory(caminhoDiretorio);
 
@@ -73,8 +73,7 @@ public sealed class ContextoJson
         Paciente = contextoSalvo.Paciente;
         Fornecedores = contextoSalvo.Fornecedores;
         Medicamentos = contextoSalvo.Medicamentos;
-        // Funcionários = contextoSalvo.Funcionários;
-        // RequisicoesEntrada = contextoSalvo.RequisicoesEntrada;
-        // RequisicoesSaida = contextoSalvo.RequisicoesSaida;
+        Funcionarios = contextoSalvo.Funcionarios;
+        RequisicoesEntrada = contextoSalvo.RequisicoesEntrada;
     }
 }

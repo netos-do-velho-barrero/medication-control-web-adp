@@ -1,8 +1,14 @@
-using System;
+using AutoMapper;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.Modulos.ModuloEstoque.RequisicaoEntrada.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
 
-public class RequisicaoEntradaProfile
+public class RequisicaoEntradaProfile : Profile
 {
+    public RequisicaoEntradaProfile()
+    {
+        CreateMap<CadastrarRequisicaoEntradaViewModel, CadastrarRequisicaoEntradaDto>();
 
+        CreateMap<ListarRequisicaoEntradaDto, ListarRequisicaoEntradaViewModel>();
+    }
 }
