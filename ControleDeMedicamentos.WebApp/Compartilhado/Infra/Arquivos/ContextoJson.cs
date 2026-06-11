@@ -5,7 +5,7 @@ using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
-using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
+
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloFornecedor.Dominio;
 // using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
