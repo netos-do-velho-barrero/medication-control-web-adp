@@ -1,5 +1,6 @@
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Apresentacao;
 
@@ -20,6 +21,8 @@ public static class InjecaoDependencia
         {
             config.AddProfile<FornecedorProfile>();
             config.AddProfile<MedicamentoProfile>();
+            config.AddProfile<PacienteProfile>();
+
         });
     }
 }
