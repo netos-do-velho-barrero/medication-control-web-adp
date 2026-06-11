@@ -1,4 +1,6 @@
 using AutoMapper;
+using System.Collections.Generic;
+using System.Linq;
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Aplicacao;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
@@ -76,7 +78,83 @@ public class RequisicaoEntradaController : Controller
         return RedirectToAction(nameof(Listar));
     }
 
-    private void CarregarSelecoes(CadastrarRequisicaoEntradaViewModel viewModel)
+    public IActionResult Editar(string id)
+    {
+        ViewBag.Titulo = "Editar Requisição de Entrada";
+
+        EditarRequisicaoEntradaDto? dto = servicoRequisicaoEntrada.SelecionarPorId(id);
+
+        if (dto == null)
+            return NotFound();
+
+        EditarRequisicaoEntradaViewModel viewModel = mapeador.Map<EditarRequisicaoEntradaViewModel>(dto);
+
+        CarregarSelecoes(viewModel);
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public IActionResult Editar(EditarRequisicaoEntradaViewModel viewModel)
+    {
+        ViewBag.Titulo = "Editar Requisição de Entrada";
+
+        if (!ModelState.IsValid)
+        {
+            CarregarSelecoes(viewModel);
+            return View(viewModel);
+        }
+
+        EditarRequisicaoEntradaDto dto = mapeador.Map<EditarRequisicaoEntradaDto>(viewModel);
+
+        ResultadoOperacaoRequisicaoEntrada resultado = servicoRequisicaoEntrada.Editar(dto);
+
+        if (!resultado.Conseguiu)
+        {
+            ModelState.AddModelError(string.Empty, resultado.MensagemErro!);
+            CarregarSelecoes(viewModel);
+            return View(viewModel);
+        }
+
+        TempData["MensagemSucesso"] = "Requisição de entrada editada com sucesso.";
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    public IActionResult Excluir(string id)
+    {
+        ViewBag.Titulo = "Excluir Requisição de Entrada";
+
+        EditarRequisicaoEntradaDto? dto = servicoRequisicaoEntrada.SelecionarPorId(id);
+
+        if (dto == null)
+            return NotFound();
+
+        ListarRequisicaoEntradaViewModel viewModel = mapeador.Map<ListarRequisicaoEntradaViewModel>(dto);
+
+        return View(viewModel);
+    }
+
+    [HttpPost, ActionName("Excluir")]
+    public IActionResult ExcluirConfirmado(string id)
+    {
+        ExcluirRequisicaoEntradaDto dto = new ExcluirRequisicaoEntradaDto(id);
+
+        ResultadoOperacaoRequisicaoEntrada resultado = servicoRequisicaoEntrada.Excluir(dto);
+
+        if (!resultado.Conseguiu)
+        {
+            TempData["MensagemErro"] = resultado.MensagemErro;
+            return RedirectToAction(nameof(Listar));
+        }
+
+        TempData["MensagemSucesso"] = "Requisição de entrada excluída com sucesso (estoque ajustado).";
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    // Método unificado usando dynamic adaptado para Medicamentos e Funcionários
+    private void CarregarSelecoes(dynamic viewModel)
     {
         viewModel.Medicamentos = repositorioMedicamento
             .SelecionarTodos()

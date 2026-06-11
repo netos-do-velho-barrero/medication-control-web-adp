@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao.ListarRequisicaoEntradaViewModel
+
 @{
+    ViewBag.Titulo = "Excluir Requisição de Entrada";
 }
+
+<div class="content-panel p-4">
+
+    <div class="alert alert-warning">
+        Tem certeza que deseja excluir esta requisição de entrada? A quantidade adicionada será subtraída do estoque automaticamente.
+    </div>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <span class="text-secondary small">Data da Entrada</span>
+                <div class="fw-semibold">@Model.Data.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <span class="text-secondary small">Medicamento</span>
+                <div class="fw-semibold">@Model.MedicamentoNome</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <span class="text-secondary small">Funcionário</span>
+                <div class="fw-semibold">@Model.FuncionarioNome</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="border rounded p-3">
+                <span class="text-secondary small">Quantidade Recebida</span>
+                <div class="fw-semibold">@Model.Quantidade</div>
+            </div>
+        </div>
+
+    </div>
+
+    <form asp-controller="RequisicaoEntrada" asp-action="Excluir" method="post">
+
+        <input asp-for="Id" type="hidden" />
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                Confirmar exclusão
+            </button>
+            <a class="btn btn-outline-secondary" asp-controller="RequisicaoEntrada" asp-action="Listar">
+                Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>

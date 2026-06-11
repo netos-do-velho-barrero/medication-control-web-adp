@@ -8,12 +8,9 @@ using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Aplicacao;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Aplicacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Apresentacao;
 
-
-
-// using ControleDeMedicamentos.WebApp.ModuloMedicamentos.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloFuncionários.Apresentacao;
-// using ControleDeMedicamentos.WebApp.ModuloEstoque.Apresentacao;
 
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Aplicacao;
@@ -27,6 +24,8 @@ public static class InjecaoDependencia
         services.AddScoped<ServicoPaciente>();
         services.AddScoped<ServicoFuncionario>();
         services.AddScoped<ServicoRequisicaoEntrada>();
+        services.AddScoped<ServicoRequisicaoSaida>();
+
 
         services.AddControllersWithViews().AddRazorOptions(options =>
         {
@@ -42,9 +41,9 @@ public static class InjecaoDependencia
             config.AddProfile<FornecedorProfile>();
             config.AddProfile<MedicamentoProfile>();
             config.AddProfile<PacienteProfile>();
-             config.AddProfile<FuncionarioProfile>();
+            config.AddProfile<FuncionarioProfile>();
             config.AddProfile<RequisicaoEntradaProfile>();
-            //     config.AddProfile<RequisicaoSaidaProfile>();
+            config.AddProfile<RequisicaoSaidaProfile>();
 
         });
 

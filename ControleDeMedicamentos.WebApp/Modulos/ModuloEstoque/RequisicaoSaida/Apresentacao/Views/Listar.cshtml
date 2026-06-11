@@ -1,5 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Apresentacao.ListarRequisicaoSaidaViewModel>
+
 @{
+    ViewBag.Titulo = "Requisições de Saída";
+}
+
+<div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-primary" asp-controller="RequisicaoSaida" asp-action="Cadastrar">
+        Nova Requisição de Saída
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhuma requisição de saída cadastrada.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Medicamento</th>
+                <th>Paciente</th>
+                <th>Quantidade</th>
+                <th class="text-end">Ações</th> </tr>
+        </thead>
+        <tbody>
+            @foreach (var requisicao in Model)
+            {
+                <tr>
+                    <td>@requisicao.Data.ToString("dd/MM/yyyy")</td>
+                    <td>@requisicao.MedicamentoNome</td>
+                    <td>@requisicao.PacienteNome</td>
+                    <td>@requisicao.Quantidade</td>
+                    
+                    <td class="text-end">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a class="btn btn-sm btn-outline-primary" 
+                               asp-controller="RequisicaoSaida" 
+                               asp-action="Editar" 
+                               asp-route-id="@requisicao.Id">
+                                Editar
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger" 
+                               asp-controller="RequisicaoSaida" 
+                               asp-action="Excluir" 
+                               asp-route-id="@requisicao.Id">
+                                Excluir
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

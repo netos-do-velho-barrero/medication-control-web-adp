@@ -9,6 +9,8 @@ using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Infra;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Infra;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Dominio;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Infra;
 
 namespace ControleDeMedicamentos.WebApp.Compartilhado.Infra;
 
@@ -29,8 +31,8 @@ public static class InjecaoDependencia
         services.AddScoped<IRepositorioMedicamento, RepositorioMedicamentoEmArquivo>();
         services.AddScoped<IRepositorioFuncionario, RepositorioFuncionarioEmArquivo>();
         services.AddScoped<IRepositorioRequisicaoEntrada, RepositorioRequisicaoEntradaEmArquivo>();
-         services.AddScoped<IRepositorioPaciente, RepositorioPacienteEmArquivo>();
-        // services.AddScoped<IRepositorioListaCompra, RepositorioListaCompraEmArquivo>();
-        // services.AddScoped<IRepositorioItemLista, RepositorioItemListaEmArquivo>();
+        services.AddScoped<IRepositorioPaciente, RepositorioPacienteEmArquivo>();
+        services.AddScoped<IRepositorioRequisicaoSaida, RepositorioRequisicaoSaidaEmArquivo>();
+
     }
 }

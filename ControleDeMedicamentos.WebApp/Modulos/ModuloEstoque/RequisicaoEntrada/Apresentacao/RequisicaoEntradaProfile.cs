@@ -8,7 +8,8 @@ public class RequisicaoEntradaProfile : Profile
     public RequisicaoEntradaProfile()
     {
         CreateMap<CadastrarRequisicaoEntradaViewModel, CadastrarRequisicaoEntradaDto>();
-
         CreateMap<ListarRequisicaoEntradaDto, ListarRequisicaoEntradaViewModel>();
+        CreateMap<EditarRequisicaoEntradaDto, EditarRequisicaoEntradaViewModel>().ReverseMap();
+        CreateMap<EditarRequisicaoEntradaDto, ListarRequisicaoEntradaViewModel>();
     }
 }

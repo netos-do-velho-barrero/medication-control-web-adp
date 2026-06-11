@@ -8,10 +8,8 @@ public class RequisicaoEntrada : EntidadeBase<RequisicaoEntrada>
 
     public string MedicamentoId { get; set; } = string.Empty;
     public string MedicamentoNome { get; set; } = string.Empty;
-
     public string FuncionarioId { get; set; } = string.Empty;
     public string FuncionarioNome { get; set; } = string.Empty;
-
     public int Quantidade { get; set; }
 
     public RequisicaoEntrada()

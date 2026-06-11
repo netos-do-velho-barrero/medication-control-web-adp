@@ -1,4 +1,5 @@
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Apresentacao;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
@@ -28,6 +29,8 @@ public static class InjecaoDependencia
             config.AddProfile<PacienteProfile>();
             config.AddProfile<FuncionarioProfile>();
             config.AddProfile<RequisicaoEntradaProfile>();
+            config.AddProfile<RequisicaoSaidaProfile>();
+
         });
     }
 }

@@ -9,6 +9,7 @@ public class Medicamento : EntidadeBase<Medicamento>
     public int QuantidadeEmEstoque { get; set; }
     public string FornecedorId { get; set; } = string.Empty;
     public string FornecedorNome { get; set; } = string.Empty;
+    
 
     public Medicamento()
     {
@@ -31,6 +32,11 @@ public class Medicamento : EntidadeBase<Medicamento>
     public void AdicionarQuantidade(int quantidade)
     {
         QuantidadeEmEstoque += quantidade;
+    }
+
+    public void SubtrairQuantidade(int quantidade)
+    {
+        QuantidadeEmEstoque -= quantidade;
     }
 
     public override void Atualizar(Medicamento medicamentoAtualizado)

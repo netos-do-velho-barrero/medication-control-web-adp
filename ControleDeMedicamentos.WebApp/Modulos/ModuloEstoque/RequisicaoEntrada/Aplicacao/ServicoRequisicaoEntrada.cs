@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesEntrada.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloFuncionario.Dominio;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Dominio;
@@ -54,6 +57,82 @@ public class ServicoRequisicaoEntrada
         return ResultadoOperacaoRequisicaoEntrada.Sucesso();
     }
 
+    public ResultadoOperacaoRequisicaoEntrada Editar(EditarRequisicaoEntradaDto dto)
+    {
+        RequisicaoEntrada? requisicaoOriginal = repositorioRequisicaoEntrada.SelecionarPorId(dto.Id);
+
+        if (requisicaoOriginal == null)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("Requisição de entrada não encontrada.");
+
+        Medicamento? medicamento = repositorioMedicamento.SelecionarPorId(dto.MedicamentoId);
+
+        if (medicamento == null)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("Medicamento não encontrado.");
+
+        Funcionario? funcionario = repositorioFuncionario.SelecionarPorId(dto.FuncionarioId);
+
+        if (funcionario == null)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("Funcionário não encontrado.");
+
+        // Regra de segurança: Desfaz temporariamente a entrada antiga no cálculo
+        // para checar se o estoque atual suporta a remoção dela
+        int estoqueTemporario = medicamento.QuantidadeEmEstoque - requisicaoOriginal.Quantidade;
+
+        if (estoqueTemporario < 0)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("A alteração desta entrada não é permitida pois o estoque atual é menor que o estorno da quantidade anterior.");
+
+        // Atualiza as quantidades reais no domínio (Estorna a antiga e soma a nova quantidade editada)
+        medicamento.SubtrairQuantidade(requisicaoOriginal.Quantidade);
+        medicamento.AdicionarQuantidade(dto.Quantidade);
+
+        RequisicaoEntrada requisicaoAtualizada = new RequisicaoEntrada(
+            dto.Data,
+            medicamento.Id,
+            medicamento.Nome,
+            funcionario.Id,
+            funcionario.Nome,
+            dto.Quantidade
+        );
+
+        List<string> erros = requisicaoAtualizada.Validar();
+
+        if (erros.Any())
+            return ResultadoOperacaoRequisicaoEntrada.Falha(erros.First());
+
+        repositorioMedicamento.Editar(medicamento.Id, medicamento);
+        repositorioRequisicaoEntrada.Editar(dto.Id, requisicaoAtualizada);
+
+        return ResultadoOperacaoRequisicaoEntrada.Sucesso();
+    }
+
+    public ResultadoOperacaoRequisicaoEntrada Excluir(ExcluirRequisicaoEntradaDto dto)
+    {
+        RequisicaoEntrada? requisicaoEntrada = repositorioRequisicaoEntrada.SelecionarPorId(dto.Id);
+
+        if (requisicaoEntrada == null)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("Requisição de entrada não encontrada.");
+
+        Medicamento? medicamento = repositorioMedicamento.SelecionarPorId(requisicaoEntrada.MedicamentoId);
+
+        if (medicamento != null)
+        {
+            // Valida se a quantidade atual em estoque permite remover essa entrada anterior
+            if (medicamento.QuantidadeEmEstoque - requisicaoEntrada.Quantidade < 0)
+                return ResultadoOperacaoRequisicaoEntrada.Falha("Não é possível excluir esta entrada. A quantidade atual em estoque é menor do que a quantidade que será estornada.");
+
+            // Estorna a quantidade tirando do estoque do medicamento
+            medicamento.SubtrairQuantidade(requisicaoEntrada.Quantidade);
+            repositorioMedicamento.Editar(medicamento.Id, medicamento);
+        }
+
+        bool conseguiuExcluir = repositorioRequisicaoEntrada.Excluir(dto.Id);
+
+        if (!conseguiuExcluir)
+            return ResultadoOperacaoRequisicaoEntrada.Falha("Não foi possível excluir a requisição de entrada.");
+
+        return ResultadoOperacaoRequisicaoEntrada.Sucesso();
+    }
+
     public List<ListarRequisicaoEntradaDto> SelecionarTodos()
     {
         return repositorioRequisicaoEntrada
@@ -66,6 +145,15 @@ public class ServicoRequisicaoEntrada
                 r.Quantidade
             ))
             .ToList();
+    }
+
+    public EditarRequisicaoEntradaDto? SelecionarPorId(string id)
+    {
+        RequisicaoEntrada? r = repositorioRequisicaoEntrada.SelecionarPorId(id);
+
+        if (r == null) return null;
+
+        return new EditarRequisicaoEntradaDto(r.Id, r.Data, r.MedicamentoId, r.FuncionarioId, r.Quantidade);
     }
 }
 

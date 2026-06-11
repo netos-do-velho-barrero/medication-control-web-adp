@@ -25,6 +25,7 @@ else
                 <th>Medicamento</th>
                 <th>Funcionário</th>
                 <th>Quantidade</th>
+                <th class="text-end">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,16 @@ else
                     <td>@requisicao.MedicamentoNome</td>
                     <td>@requisicao.FuncionarioNome</td>
                     <td>@requisicao.Quantidade</td>
+                    <td class="text-end">
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a class="btn btn-sm btn-outline-primary" asp-controller="RequisicaoEntrada" asp-action="Editar" asp-route-id="@requisicao.Id">
+                                Editar
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger" asp-controller="RequisicaoEntrada" asp-action="Excluir" asp-route-id="@requisicao.Id">
+                                Excluir
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>

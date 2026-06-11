@@ -1,8 +1,20 @@
-using System;
+using AutoMapper;
+using ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Aplicacao;
 
-namespace ControleDeMedicamentos.WebApp.Modulos.ModuloEstoque.RequisicaoSaida.Apresentacao;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Apresentacao;
 
-public class RequisicaoSaidaProfile
+public class RequisicaoSaidaProfile : Profile
 {
+    public RequisicaoSaidaProfile()
+    {
+     
+        CreateMap<CadastrarRequisicaoSaidaViewModel, CadastrarRequisicaoSaidaDto>();
 
+
+        CreateMap<ListarRequisicaoSaidaDto, ListarRequisicaoSaidaViewModel>();
+
+        CreateMap<EditarRequisicaoSaidaDto, EditarRequisicaoSaidaViewModel>().ReverseMap();
+
+        CreateMap<EditarRequisicaoSaidaDto, ListarRequisicaoSaidaViewModel>();
+    }
 }

@@ -14,3 +14,16 @@ public record ListarRequisicaoEntradaDto(
     string FuncionarioNome,
     int Quantidade
 );
+
+
+public record EditarRequisicaoEntradaDto(
+    string Id,
+    DateTime Data,
+    string MedicamentoId,
+    string FuncionarioId,
+    int Quantidade
+);
+
+public record ExcluirRequisicaoEntradaDto(
+    string Id
+);

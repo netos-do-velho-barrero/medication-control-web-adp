@@ -1,8 +1,8 @@
-using System;
+using ControleDeMedicamentos.WebApp.Compartilhado.Dominio;
 
-namespace ControleDeMedicamentos.WebApp.Modulos.ModuloEstoque.RequisicaoSaida.Dominio;
+namespace ControleDeMedicamentos.WebApp.ModuloEstoque.RequisicoesSaida.Dominio;
 
-public class IRepositorioRequisicaoSaida
+public interface IRepositorioRequisicaoSaida : IRepositorio<RequisicaoSaida>
 {
-
+    
 }
