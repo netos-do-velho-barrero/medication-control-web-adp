@@ -1,7 +1,6 @@
 using ControleDeMedicamentos.WebApp.ModuloFornecedor.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloMedicamento.Apresentacao;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
-using ControleDeMedicamentos.WebApp.ModuloPaciente.Apresentacao;
 // using ControleDeMedicamentos.WebApp.ModuloMedicamentos.Apresentacao;
 // using ControleDeMedicamentos.WebApp.ModuloFuncionários.Apresentacao;
 // using ControleDeMedicamentos.WebApp.ModuloEstoque.Apresentacao;
@@ -28,14 +27,11 @@ public static class InjecaoDependencia
             config.AddProfile<FornecedorProfile>();
             config.AddProfile<MedicamentoProfile>();
             config.AddProfile<PacienteProfile>();
-
-            config.AddProfile<PacienteProfile>();
-            //     config.AddProfile<MedicamentosProfile>();
             //     config.AddProfile<FuncionáriosProfile>();
             //     config.AddProfile<RequisicaoEntradaProfile>();
             //     config.AddProfile<RequisicaoSaidaProfile>();
 
         });
-    
+
     }
 }
