@@ -8,27 +8,27 @@
         <h1 class="display-5 fw-semibold mb-3">Controle de Medicamentos</h1>
 
         <p class="lead text-secondary mb-4">
-            Organize Fornecedores, pacientes, Medicamentos, Funcionários e Estoque de forma simples.
+            Organize Fornecedores, Pacientes, Medicamentos, Funcionários e Estoque de forma simples.
         </p>
 
         <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-primary rounded-pill px-4" asp-controller="Categoria" asp-action="Listar">
+            <a class="btn btn-primary rounded-pill px-4" asp-controller="Fornecedor" asp-action="Listar">
                 Fornecedores
             </a>
 
-            <a class="btn btn-primary rounded-pill px-4" asp-controller="Produto" asp-action="Listar">
+            <a class="btn btn-primary rounded-pill px-4" asp-controller="Paciente" asp-action="Listar">
                 Pacientes
             </a>
 
-            <a class="btn btn-primary rounded-pill px-4" asp-controller="ListaCompra" asp-action="Listar">
+            <a class="btn btn-primary rounded-pill px-4" asp-controller="Medicamento" asp-action="Listar">
                 Medicamentos
             </a>
 
-            <a class="btn btn-primary rounded-pill px-4" asp-controller="ListaCompra" asp-action="Listar">
+            <a class="btn btn-primary rounded-pill px-4" asp-controller="Funcionario" asp-action="Listar">
                 Funcionários
             </a>
 
-            <a class="btn btn-primary rounded-pill px-4" asp-controller="ListaCompra" asp-action="Listar">
+            <a class="btn btn-primary rounded-pill px-4" asp-controller="Estoque" asp-action="Listar">
                 Estoque
             </a>
         </div>
@@ -41,31 +41,31 @@
 
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                       asp-controller="Categoria" asp-action="Listar">
+                       asp-controller="Fornecedor" asp-action="Listar">
                         Controle de Fornecedores
                         <span class="badge text-bg-primary rounded-pill">Abrir</span>
                     </a>
 
                     <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                       asp-controller="Produto" asp-action="Listar">
+                       asp-controller="Paciente" asp-action="Listar">
                         Controle de Pacientes
                         <span class="badge text-bg-primary rounded-pill">Abrir</span>
                     </a>
 
                     <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                       asp-controller="ListaCompra" asp-action="Listar">
+                       asp-controller="Medicamento" asp-action="Listar">
                         Controle de Medicamentos
                         <span class="badge text-bg-primary rounded-pill">Abrir</span>
                     </a>
 
-                      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                       asp-controller="ListaCompra" asp-action="Listar">
+                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                       asp-controller="Funcionario" asp-action="Listar">
                         Controle de Funcionários
                         <span class="badge text-bg-primary rounded-pill">Abrir</span>
                     </a>
 
-                      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                       asp-controller="ListaCompra" asp-action="Listar">
+                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                       asp-controller="Estoque" asp-action="Listar">
                         Controle de Estoque
                         <span class="badge text-bg-primary rounded-pill">Abrir</span>
                     </a>
