@@ -1,7 +1,6 @@
 using System;
 using FluentResults;
 using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
-using ControleDeMedicamentos.WebApp.ModuloPaciente.Dominio;
 
 
 namespace ControleDeMedicamentos.WebApp.ModuloPaciente.Aplicacao;

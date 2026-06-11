@@ -14,7 +14,6 @@ public record ListarPacienteDto(
 
 
 public record CadastrarPacienteDto(
-    string Id,
     string Nome,
     string Telefone,
     string CartaoSus,
