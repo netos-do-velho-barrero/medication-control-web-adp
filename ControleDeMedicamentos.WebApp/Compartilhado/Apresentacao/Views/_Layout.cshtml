@@ -1,19 +1,141 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string controllerAtual = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+}
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Titulo - Controle de Medicamentos</title>
+    <title>@ViewBag.Titulo - MedControl</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+            :root {
+                --saude: #087f6d;
+                --saude-escuro: #065f52;
+                --saude-claro: #e5f5f1;
+            }
+
+            body {
+                min-height: 100vh;
+                background: #f3f8f7;
+                color: #243b38;
+            }
+
+            .navbar {
+                background: linear-gradient(110deg, var(--saude-escuro), var(--saude)) !important;
+            }
+
+            .navbar-brand,
+            .navbar-brand:hover {
+                color: white;
+            }
+
+            .navbar-brand i {
+                background: rgba(255, 255, 255, .15);
+                padding: .55rem;
+                border-radius: .75rem;
+            }
+
+            .navbar .nav-link {
+                color: rgba(255, 255, 255, .8);
+                border-radius: .6rem;
+                padding: .5rem .75rem !important;
+            }
+
+            .navbar .nav-link:hover,
+            .navbar .nav-link.active {
+                color: white;
+                background: rgba(255, 255, 255, .14);
+            }
+
+            .page-header {
+                background: white;
+                border-bottom: 1px solid #dce9e6;
+            }
+
+            .page-header small {
+                color: var(--saude);
+                font-weight: 700;
+                letter-spacing: .08em;
+            }
+
+            .content-shell {
+                background: white;
+                border: 1px solid #e0ebe8;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: 0 .35rem 1.5rem rgba(25, 87, 76, .07);
+                overflow-x: auto;
+            }
+
+            .btn-primary {
+                --bs-btn-bg: var(--saude);
+                --bs-btn-border-color: var(--saude);
+                --bs-btn-hover-bg: var(--saude-escuro);
+                --bs-btn-hover-border-color: var(--saude-escuro);
+            }
+
+            .btn-outline-primary {
+                --bs-btn-color: var(--saude);
+                --bs-btn-border-color: var(--saude);
+                --bs-btn-hover-bg: var(--saude);
+                --bs-btn-hover-border-color: var(--saude);
+            }
+
+            .form-control,
+            .form-select {
+                border-color: #cbded9;
+                padding: .7rem .85rem;
+            }
+
+            .form-control:focus,
+            .form-select:focus {
+                border-color: var(--saude);
+                box-shadow: 0 0 0 .25rem rgba(8, 127, 109, .13);
+            }
+
+            .form-label {
+                font-weight: 600;
+                color: #35534e;
+            }
+
+            .table {
+                min-width: 680px;
+            }
+
+            .table thead th {
+                color: var(--saude-escuro);
+                background: var(--saude-claro);
+                border-bottom: 0;
+                white-space: nowrap;
+            }
+
+            .table tbody tr:hover {
+                background: #f3faf8;
+            }
+
+            .alert {
+                border: 0;
+                border-left: 4px solid;
+            }
+
+            footer {
+                color: #6d817d;
+            }
+    </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom">
-        <div class="container">
-            <a class="navbar-brand fw-semibold" asp-controller="Home" asp-action="Index">
-                Controle de Medicamentos
+<body class="d-flex flex-column">
+    <nav class="navbar navbar-expand-xl navbar-dark shadow-sm">
+        <div class="container py-2">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-capsule-pill"></i>
+                <span>MedControl</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
@@ -21,45 +143,63 @@
             </button>
 
             <div class="collapse navbar-collapse" id="menuPrincipal">
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">Início</a>
-                    <a class="nav-link" asp-controller="Fornecedor" asp-action="Listar">Fornecedores</a>
-                    <a class="nav-link" asp-controller="Medicamento" asp-action="Listar">Medicamentos</a>
-                    <a class="nav-link" asp-controller="Paciente" asp-action="Listar">Pacientes</a>
-                    <a class="nav-link" asp-controller="Funcionario" asp-action="Listar">Funcionarios</a>
-                    <a class="nav-link" asp-controller="RequisicaoEntrada" asp-action="Listar">Estoque</a>
-                    <a class="nav-link" asp-controller="RequisicaoSaida" asp-action="Listar">Estoque</a>
-
+                <div class="navbar-nav ms-auto gap-xl-1 mt-3 mt-xl-0">
+                    <a class="nav-link @(controllerAtual == "Home" ? "active" : "")" asp-controller="Home"
+                       asp-action="Index"><i class="bi bi-grid me-1"></i> Painel</a>
+                    <a class="nav-link @(controllerAtual == "Medicamento" ? "active" : "")" asp-controller="Medicamento"
+                       asp-action="Listar"><i class="bi bi-capsule me-1"></i> Medicamentos</a>
+                    <a class="nav-link @(controllerAtual == "Paciente" ? "active" : "")" asp-controller="Paciente"
+                       asp-action="Listar"><i class="bi bi-people me-1"></i> Pacientes</a>
+                    <a class="nav-link @(controllerAtual == "Fornecedor" ? "active" : "")" asp-controller="Fornecedor"
+                       asp-action="Listar"><i class="bi bi-truck me-1"></i> Fornecedores</a>
+                    <a class="nav-link @(controllerAtual == "Funcionario" ? "active" : "")" asp-controller="Funcionario"
+                       asp-action="Listar"><i class="bi bi-person-badge me-1"></i> Funcionários</a>
+                    <a class="nav-link @(controllerAtual == "RequisicaoEntrada" ? "active" : "")"
+                       asp-controller="RequisicaoEntrada" asp-action="Listar"><i
+                        class="bi bi-box-arrow-in-down me-1"></i> Entradas</a>
+                        <a class="nav-link @(controllerAtual == "RequisicaoSaida" ? "active" : "")"
+                           asp-controller="RequisicaoSaida" asp-action="Listar"><i class="bi bi-box-arrow-up me-1"></i>
+                            Saídas</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </nav>
+            </nav>
 
-    <header class="container py-4">
-        <h2>@ViewBag.Titulo</h2>
-    </header>
+            <header class="page-header">
+                <div class="container py-4">
+                    <small>GESTÃO FARMACÊUTICA</small>
+                    <h1 class="h3 fw-bold mb-0 mt-1">@ViewBag.Titulo</h1>
+                </div>
+            </header>
 
-    <main class="container pb-5">
-        @if (TempData["MensagemErro"] is string mensagemErro)
-        {
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                @mensagemErro
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
+            <main class="container flex-grow-1 py-4">
+                @if (TempData["MensagemErro"] is string mensagemErro)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show shadow-sm">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>@mensagemErro
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
 
-        @if (TempData["MensagemSucesso"] is string mensagemSucesso)
-        {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                @mensagemSucesso
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
+                @if (TempData["MensagemSucesso"] is string mensagemSucesso)
+                {
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm">
+                        <i class="bi bi-check-circle-fill me-2"></i>@mensagemSucesso
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
 
-        @RenderBody()
-    </main>
+                <section class="content-shell">
+                    @RenderBody()
+                </section>
+            </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            <footer class="container py-4 text-center small">
+                <i class="bi bi-shield-check me-1"></i>
+                MedControl &copy; @DateTime.Now.Year — Gestão segura de medicamentos
+            </footer>
 
-</html>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+
+    </html>
