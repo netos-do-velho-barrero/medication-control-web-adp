@@ -7,7 +7,7 @@
 ![Razor CSHTML](https://img.shields.io/badge/Razor_CSHTML-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Arquitetura MVC](https://img.shields.io/badge/Architecture-MVC-blue?style=for-the-badge)
 ![Desenvolvimento Web](https://img.shields.io/badge/Dev-Web-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
 
 ---
 
@@ -89,16 +89,16 @@ Uma farmácia popular precisa de um sistema para controlar seu estoque de medica
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/pedrohenriquedsdev/farmacia.git
+git clone https://github.com/pedrohenriquedsdev/controle-de-medicamentos.git
 
 # 2. Acesse a pasta do projeto
-cd farmacia
+cd controle-de-medicamentos
 
 # 3. Restaure os pacotes
 dotnet restore
 
 # 4. Execute a aplicação
-dotnet run --project src/Farmacia.Web
+dotnet run --project src/ControleDeMedicamentos.WebApp
 ```
 
 Acesse no navegador: `https://localhost:5001`
