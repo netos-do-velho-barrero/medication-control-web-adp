@@ -11,6 +11,8 @@
 
 ---
 
+![](controlemedicamentos.gif)
+
 ## 👥 Desenvolvedores
 
 <table>
